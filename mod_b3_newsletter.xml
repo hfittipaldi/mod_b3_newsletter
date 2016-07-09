@@ -6,7 +6,7 @@
     <copyright>Copyright (C) 2016 Hugo Fittipaldi. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later</license>
     <authorEmail>hugo.fittipaldi@gmail.com</authorEmail>
-    <version>v1.0.0-dev</version>
+    <version>v1.0.1-dev</version>
     <description>Place a simple Bootstrap 3 newsletter form in a module position</description>
     <files>
         <filename>mod_b3_newsletter.xml</filename>
@@ -31,6 +31,7 @@
                 <field name="email_recipient"
                        type="email"
                        default="email@email.com"
+                       validate="email"
                        label="Email Recipient"
                        description="The recipient of the subscription notification mail." />
                 <field name="button_text"
@@ -43,21 +44,11 @@
                        default="Thank you for subscribing to our site."
                        label="Thank you page text"
                        description="The text displayed to the user when he subscribes" />
-                <field name="thank_text_color"
-                       type="color"
-                       default="#000000"
-                       label="Text Color"
-                       description="The color of the Thank you text." />
                 <field name="error_text"
                        type="text"
                        default="Your subscription could not be submitted. Please try again."
                        label="Error page text"
                        description="The text displayed to the user when the subscription fails to be mailed" />
-                <field name="error_text_color"
-                       type="color"
-                       default="#000000"
-                       label="Error Text Color"
-                       description="The color of the error texts." />
                 <field name="subject"
                        type="text"
                        default="New subscription to your site!"
@@ -70,11 +61,13 @@
                        description="The name of the subscription mail's sender" />
                 <field name="from_email"
                        type="email"
+                       validate="email"
                        default="newsletter_subscriber@yoursite.com"
                        label="Mail From Email"
                        description="The email of the subscription mail's sender" />
                 <field name="sending_from_set"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="1"
                        label="Sending from set email"
                        description="If this is yes, the mail sent comes from the set email above. If it is no, it comes from the data given while subscribing">
@@ -96,23 +89,9 @@
                        default="Please write a valid email"
                        label="Invalid Email Error Message"
                        description="The error message when the user writes an invalid email" />
-                <field name="name_width"
-                       type="text"
-                       default="12"
-                       label="Name Width"
-                       description="Width in letters of the name input" />
-                <field name="email_width"
-                       type="text"
-                       default="12"
-                       label="Email Width"
-                       description="Width in letters of the email input" />
-                <field name="button_width"
-                       type="text"
-                       default="100"
-                       label="Button Width"
-                       description="Width in percent of the submit button" />
                 <field name="save_list"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="1"
                        label="Save to List"
                        description="If this is yes, then every subscription is written to a file in 'email' format. (This does not influent sending the email)">
@@ -126,6 +105,7 @@
                        description="Full path of list file. Please make sure all directories exist up to the file."/>
                 <field name="exact_url"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="1"
                        label="Exact URL"
                        description="This is an advanced option about the url retrieval way. If your site is http and your server/host supports https this should be No.">
@@ -134,6 +114,7 @@
                 </field>
                 <field name="disable_https"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="1"
                        label="Disable HTTPS"
                        description="This is an advanced option about the url retrieval way. Please enable it if NS posts in https and your site is http.">
@@ -147,6 +128,7 @@
                        description="A small text shown before (above) the subscription form" />
                 <field name="fixed_url"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="0"
                        label="Fixed URL"
                        description="A simple solution to people that want to use NS in an exact page. Change this to Yes and write the URL of NS in the Fixed URL Address parameter">
@@ -165,6 +147,7 @@
                        description="If you want to use NS multiple times in a page, use this unique identifier so that they don't get post together."/>
                 <field name="enable_anti_spam"
                        type="radio"
+                       class="btn-group btn-group-yesno radio"
                        default="0"
                        label="Enable Anti-Spam"
                        description="Enable a simple question-answer anti-spam system">
@@ -181,11 +164,6 @@
                        default="2"
                        label="Anti-Spam Answer"
                        description="A simple answer to the question. Easy for people, hard for machines"/>
-                <field name="addcss"
-                       type="text"
-                       default="div.modns tr, div.modns td { border: none; padding: 3px; }"
-                       label="Custom CSS"
-                       description="Custom CSS for the form." />
             </fieldset>
 
             <fieldset name="advanced">
@@ -223,7 +201,7 @@
         </fields>
     </config>
 
-	<updateservers>
-		<server type="extension" priority="1" name="B3 Newsletter Module Update Site">https://raw.githubusercontent.com/hfittipaldi/mod_b3_newsletter/master/manifest.xml</server>
-	</updateservers>
+    <updateservers>
+        <server type="extension" priority="1" name="B3 Newsletter Module Update Site">https://raw.githubusercontent.com/hfittipaldi/mod_b3_newsletter/master/manifest.xml</server>
+    </updateservers>
 </extension>

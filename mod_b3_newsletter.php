@@ -38,19 +38,9 @@ $noName       = $params->get('no_name', 'Please write your name');
 $noEmail      = $params->get('no_email', 'Please write your email');
 $invalidEmail = $params->get('invalid_email', 'Please write a valid email');
 
-$nameWidth   = $params->get('name_width', '12');
-$emailWidth  = $params->get('email_width', '12');
-$buttonWidth = $params->get('button_width', '100');
-
 $saveList = $params->get('save_list', true);
 $savePath = $params->get('save_path', 'mailing_list.txt');
 
-$mod_class_suffix = $params->get('moduleclass_sfx', '');
-
-$addcss = $params->get('addcss', 'div.modns tr, div.modns td { border: none; padding: 3px; }');
-
-$thanksTextColor = $params->get('thank_text_color', '#000000');
-$errorTextColor  = $params->get('error_text_color', '#000000');
 $pre_text        = $params->get('pre_text', '');
 
 $disable_https = $params->get('disable_https', true);
@@ -86,39 +76,50 @@ $enable_anti_spam = $params->get('enable_anti_spam', true);
 $myAntiSpamQuestion = $params->get('anti_spam_q', 'How many eyes has a typical person? (ex: 1)');
 $myAntiSpamAnswer = $params->get('anti_spam_a', '2');
 
-$myError = "";
+if ($recipient === "")
+{
+    $app->enqueueMessage(JText::_('No recipient specified'), 'warning');
+}
+
+if ($recipient === "email@email.com")
+{
+    $app->enqueueMessage(JText::_('Mail Recipient is specified as email@email.com.<br/>Please change it from the Module parameters.'), 'warning');
+}
+
 $errors = 3;
 
 $subscriberName  = $jinput->getString('m_name'.$unique_id, null);
-$subscriberEmail = $jinput->getString('m_email'.$unique_id, null);
+$subscriberEmail = strtolower($jinput->getString('m_email'.$unique_id, null));
 
 if ($subscriberName !== null)
 {
     $errors = 0;
     if ($enable_anti_spam)
     {
-        if ($jinput->getString("modns_anti_spam_answer".$unique_id, null) != $myAntiSpamAnswer)
+        if ($jinput->getString("modns_anti_spam_answer".$unique_id) != $myAntiSpamAnswer)
         {
-            $myError = '<span style="color: '.$errorTextColor.';">' . JText::_('Wrong anti-spam answer') . '</span><br/>';
+            $app->enqueueMessage(JText::_('Wrong anti-spam answer'), 'warning');
         }
     }
+
     if ($subscriberName === "")
     {
-        $myError = $myError . '<span style="color: '.$errorTextColor.';">' . $noName . '</span><br/>';
+        $app->enqueueMessage(JText::_($noName), 'warning');
         $errors = $errors + 1;
     }
+
     if ($subscriberEmail === "")
     {
-        $myError = $myError . '<span style="color: '.$errorTextColor.';">' . $noEmail . '</span><br/>';
+        $app->enqueueMessage(JText::_($noEmail), 'warning');
         $errors = $errors + 2;
     }
-    elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/", strtolower($_POST["m_email".$unique_id])))
+    elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/", $subscriberEmail))
     {
-        $myError = $myError . '<span style="color: '.$errorTextColor.';">' . $invalidEmail . '</span><br/>';
+        $app->enqueueMessage(JText::_($invalidEmail), 'warning');
         $errors = $errors + 2;
     }
 
-    if ($myError == "")
+    if ($errors === 0)
     {
         require JModuleHelper::getLayoutPath('mod_b3_newsletter', $params->get('layout_mail') . '_mail');
 
@@ -126,7 +127,7 @@ if ($subscriberName !== null)
         $mailSender->addRecipient($recipient);
         if ($sendingWithSetEmail)
         {
-            $mailSender->setSender(array($fromEmail,$fromName));
+            $mailSender->setSender(array($fromEmail, $fromName));
         }
         else
         {
@@ -138,43 +139,22 @@ if ($subscriberName !== null)
 
         if (!$mailSender->Send())
         {
-            $myReplacement = '<div class="modns"><span style="color: '.$errorTextColor.';">' . $errorText . '</span></div>';
-            print $myReplacement;
+            $app->enqueueMessage(JText::_($errorText), 'error');
         }
         else
         {
-            $myReplacement = '<div class="modns"><span style="color: '.$thanksTextColor.';">' . $pageText . '</span></div>';
-            print $myReplacement;
-
             if ($saveList)
             {
                 $file = fopen($savePath, "a");
                 fwrite($file, "\n" . $subscriberName . ";" . $subscriberEmail);
                 fclose($file);
             }
+
+            $app->enqueueMessage(JText::_($pageText), 'success');
         }
-
-        return true;
     }
-}
 
-if ($recipient === "")
-{
-    $myReplacement = '<div class="modns"><span style="color: '.$errorTextColor.';">No recipient specified</span></div>';
-    print $myReplacement;
-    return true;
-}
-
-if ($recipient === "email@email.com")
-{
-    $myReplacement = '<div class="modns"><span style="color: '.$errorTextColor.';">Mail Recipient is specified as email@email.com.<br/>Please change it from the Module parameters.</span></div>';
-    print $myReplacement;
-    return true;
-}
-
-if ($myError != "")
-{
-    print $myError;
+    $app->redirect($url);
 }
 
 require JModuleHelper::getLayoutPath('mod_b3_newsletter', $params->get('layout', 'default'));

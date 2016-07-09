@@ -16,6 +16,6 @@ defined( '_JEXEC' ) or die;
 
 date_default_timezone_set($app->get('offset'));
 
-$myMessage = 'Sent: ' . date("r") . "\n\n" .
+$myMessage = 'Sent: ' . date("r") . "\n" .
              $myNameLabel . ' ' . $subscriberName . ",\n" .
              $myEmailLabel . ' ' . $subscriberEmail;

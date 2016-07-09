@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <updates>
+    <update>
+        <name>B3 Newsletter Module</name>
+        <description>Place a simple Bootstrap 3 newsletter form in a module position.</description>
+        <element>mod_b3_newsletter</element>
+        <type>module</type>
+        <version>v1.0.1-dev</version>
+        <infourl title="B3 Carousel Module URL">https://github.com/hfittipaldi/mod_b3_newsletter/releases/tag/v1.0.1-dev</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/hfittipaldi/mod_b3_newsletter/releases/download/v1.0.1-dev/mod_b3_newsletter-v1.0.1-dev.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>dev</tag>
+        </tags>
+        <maintainer>Hugo Fittipaldi</maintainer>
+        <maintainerurl>https://github.com/hfittipaldi</maintainerurl>
+        <targetplatform name="joomla" version="3.[23456789]" />
+        <client>site</client>
+    </update>
 </updates>
