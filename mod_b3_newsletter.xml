@@ -223,7 +223,7 @@
         </fields>
     </config>
 
-    <updateservers>
-        <server type="extension" priority="1" name="B3 Newsletter Module Update Site">http://localhost/www/mod_b3_newsletter-dev/manifest.xml</server>
-    </updateservers>
+	<updateservers>
+		<server type="extension" priority="1" name="B3 Newsletter Module Update Site">https://raw.githubusercontent.com/hfittipaldi/mod_b3_newsletter/master/manifest.xml</server>
+	</updateservers>
 </extension>
