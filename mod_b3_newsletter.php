@@ -18,6 +18,7 @@ defined( '_JEXEC' ) or die;
 require_once __DIR__ . '/helper.php';
 
 $app     = JFactory::getApplication();
+$session = JFactory::getSession();
 $jinput  = $app->input;
 
 $myNameLabel  = $params->get('name_label', 'Name:');
@@ -93,6 +94,9 @@ $subscriberEmail = strtolower($jinput->getString('m_email'.$unique_id, null));
 
 if ($subscriberName !== null)
 {
+    $session->set('subscriberName', $subscriberName);
+    $session->set('subscriberEmail', $subscriberEmail);
+
     $errors = 0;
     if ($enable_anti_spam)
     {
@@ -152,6 +156,14 @@ if ($subscriberName !== null)
 
             $app->enqueueMessage(JText::_($pageText), 'success');
         }
+
+        $session->clear('subscriberName');
+        $session->clear('subscriberEmail');
+        $session->clear('errors');
+    }
+    else
+    {
+        $session->set('errors', $errors);
     }
 
     $app->redirect($url);
