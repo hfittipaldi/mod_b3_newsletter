@@ -12,7 +12,7 @@
  */
 
 // no direct access
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
 // Include the syndicate functions only once
 require_once __DIR__ . '/helper.php';
@@ -21,10 +21,10 @@ $app     = JFactory::getApplication();
 $session = JFactory::getSession();
 $jinput  = $app->input;
 
+$recipient    = modB3NewsletterHelper::getRecipient($params);
+
 $myNameLabel  = $params->get('name_label', 'Name:');
 $myEmailLabel = $params->get('email_label', 'Email:');
-
-$recipient = $params->get('email_recipient', '');
 
 $buttonText = $params->get('button_text', 'Subscribe to Newsletter');
 $pageText   = $params->get('page_text', 'Thank you for subscribing to our site.');
@@ -40,7 +40,7 @@ $noEmail      = $params->get('no_email', 'Please write your email');
 $invalidEmail = $params->get('invalid_email', 'Please write a valid email');
 
 $saveList = $params->get('save_list', true);
-$savePath = $params->get('save_path', 'mailing_list.txt');
+$savePath = $params->get('save_path', 'mailing_list.csv');
 
 $pre_text        = $params->get('pre_text', '');
 
@@ -76,16 +76,6 @@ $unique_id = $params->get('unique_id', "");
 $enable_anti_spam = $params->get('enable_anti_spam', true);
 $myAntiSpamQuestion = $params->get('anti_spam_q', 'How many eyes has a typical person? (ex: 1)');
 $myAntiSpamAnswer = $params->get('anti_spam_a', '2');
-
-if ($recipient === "")
-{
-    $app->enqueueMessage(JText::_('No recipient specified'), 'warning');
-}
-
-if ($recipient === "email@email.com")
-{
-    $app->enqueueMessage(JText::_('Mail Recipient is specified as email@email.com.<br/>Please change it from the Module parameters.'), 'warning');
-}
 
 $errors = 3;
 
