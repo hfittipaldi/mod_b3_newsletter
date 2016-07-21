@@ -18,7 +18,7 @@ $errors = $session->get('errors', '');
 ?>
 
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" role="form" novalidate>
-    <fieldset><legend class="modnsintro"><?php echo $pre_text; ?></legend>
+    <fieldset><?php if ($pre_text != '') { ?><legend class="modnsintro"><?php echo $pre_text; ?></legend><?php } ?>
         <?php if ($enable_anti_spam) : ?>
         <div class="form-group">
             <label for="modns_anti_spam_answer<?php echo $unique_id; ?>"><?php echo $myAntiSpamQuestion; ?></label>

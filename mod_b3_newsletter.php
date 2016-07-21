@@ -42,7 +42,7 @@ $invalidEmail = $params->get('invalid_email', 'Please write a valid email');
 $saveList = $params->get('save_list', true);
 $savePath = $params->get('save_path', 'mailing_list.csv');
 
-$pre_text        = $params->get('pre_text', '');
+$pre_text = $params->get('pre_text', '');
 
 $disable_https = $params->get('disable_https', true);
 
