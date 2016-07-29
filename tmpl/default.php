@@ -17,7 +17,7 @@ defined( '_JEXEC' ) or die;
 $errors = $session->get('errors', '');
 ?>
 
-<form action="<?php echo JRoute::_('index.php'); ?>" method="post" role="form" novalidate>
+<form action="<?php echo JRoute::_('index.php'); ?>" method="post" role="form" class="b3Newsletter">
     <fieldset><?php if ($pre_text != '') { ?><legend class="modnsintro"><?php echo $pre_text; ?></legend><?php } ?>
         <?php if ($enable_anti_spam) : ?>
         <div class="form-group">
