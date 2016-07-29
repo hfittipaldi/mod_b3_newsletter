@@ -139,6 +139,7 @@ if ($subscriberName !== null)
         {
             if ($saveList)
             {
+                $savePath = JPATH_BASE . '/images/' . $savePath;
                 $file = fopen($savePath, "a");
                 fwrite($file, "\n" . $subscriberName . ";" . $subscriberEmail);
                 fclose($file);
