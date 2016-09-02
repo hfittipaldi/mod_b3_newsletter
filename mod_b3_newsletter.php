@@ -40,7 +40,6 @@ $noEmail      = $params->get('no_email', 'Please write your email');
 $invalidEmail = $params->get('invalid_email', 'Please write a valid email');
 
 $saveList = $params->get('save_list', true);
-$savePath = $params->get('save_path', 'mailing_list.csv');
 
 $pre_text = $params->get('pre_text', '');
 
@@ -139,9 +138,9 @@ if ($subscriberName !== null)
         {
             if ($saveList)
             {
-                $savePath = JPATH_BASE . '/images/' . $savePath;
+                $savePath = JPATH_BASE . '/images/mailing_list.csv';
                 $file = fopen($savePath, "a");
-                fwrite($file, "\n" . $subscriberName . ";" . $subscriberEmail);
+                fwrite($file, PHP_EOL . $subscriberName . ";" . $subscriberEmail);
                 fclose($file);
             }
 
