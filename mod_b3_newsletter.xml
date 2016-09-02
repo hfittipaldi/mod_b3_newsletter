@@ -6,7 +6,7 @@
     <copyright>Copyright (C) 2016 Hugo Fittipaldi. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later</license>
     <authorEmail>hugo.fittipaldi@gmail.com</authorEmail>
-    <version>v1.0.0-rc2.2</version>
+    <version>v1.0.0-rc2.3</version>
     <description>Place a simple Bootstrap 3 newsletter form in a module position</description>
     <files>
         <filename>mod_b3_newsletter.xml</filename>
@@ -98,11 +98,10 @@
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </field>
-                <field name="save_path"
+				<field name="@list"
                        type="text"
-                       default="mailing_list.csv"
-                       label="List File Full Path"
-                       description="Full path of list file. Please make sure all directories exist up to the file."/>
+                       class="hidden"
+					   label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;" />
                 <field name="exact_url"
                        type="radio"
                        class="btn-group btn-group-yesno radio"
