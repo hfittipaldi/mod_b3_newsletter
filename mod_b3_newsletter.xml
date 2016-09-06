@@ -79,11 +79,6 @@
                        default="Please write your name"
                        label="No Name Error Message"
                        description="The error message when the user does not write a name" />
-                <field name="no_email"
-                       type="text"
-                       default="Please write your email"
-                       label="No Email Error Message"
-                       description="The error message when the user does not write an email" />
                 <field name="invalid_email"
                        type="text"
                        default="Please write a valid email"
@@ -98,10 +93,10 @@
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </field>
-				<field name="@list"
+                <field name="@list"
                        type="text"
                        class="hidden"
-					   label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;" />
+                       label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;" />
                 <field name="exact_url"
                        type="radio"
                        class="btn-group btn-group-yesno radio"

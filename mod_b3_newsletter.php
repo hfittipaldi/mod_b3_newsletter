@@ -101,12 +101,7 @@ if ($subscriberName !== null)
         $errors = $errors + 1;
     }
 
-    if ($subscriberEmail === "")
-    {
-        $app->enqueueMessage(JText::_($noEmail), 'warning');
-        $errors = $errors + 2;
-    }
-    elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/", $subscriberEmail))
+    if (modB3NewsletterHelper::validateEmail($subscriberEmail) === false)
     {
         $app->enqueueMessage(JText::_($invalidEmail), 'warning');
         $errors = $errors + 2;

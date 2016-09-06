@@ -41,4 +41,18 @@ class ModB3NewsletterHelper
 
         return $recipient;
     }
+
+    /*
+     * Validates a given email
+     *
+     * @since   1.0
+     * @see     http://php.net/manual/en/function.filter-var.php
+     *
+     * @param   string  $value  passed email to be verified
+     * @return  bool
+     */
+    public static function validateEmail($value)
+    {
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
 }
