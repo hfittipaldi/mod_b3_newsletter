@@ -28,11 +28,11 @@ $errors = $session->get('errors', '');
 
         <div class="form-group">
             <label for="m_name<?php echo $unique_id; ?>" class="sr-only"><?php echo $myNameLabel; ?></label>
-            <input type="text" class="form-control" name="m_name<?php echo $unique_id; ?>" size="50"<?php echo (($errors & 1) != 1) ? ' value="' . $session->get('subscriberName'). '"' : ''; ?> placeholder="Nome completo" />
+            <input type="text" class="form-control" name="m_name<?php echo $unique_id; ?>" size="50"<?php echo (($errors & 1) != 1) ? ' value="' . $session->get('subscriberName'). '"' : ''; ?> placeholder="Nome completo" required />
         </div>
         <div class="form-group">
             <label for="m_email<?php echo $unique_id; ?>" class="sr-only"><?php echo $myEmailLabel; ?></label>
-            <input type="email" class="form-control" name="m_email<?php echo $unique_id; ?>" size="50"<?php echo (($errors & 2) != 2) ? ' value="' . $session->get('subscriberEmail') . '"' : ''; ?> placeholder="Email" />
+            <input type="email" class="form-control" name="m_email<?php echo $unique_id; ?>" size="50"<?php echo (($errors & 2) != 2) ? ' value="' . $session->get('subscriberEmail') . '"' : ''; ?> placeholder="Email" required />
         </div>
 
         <button type="submit" class="btn btn-primary"><?php echo $buttonText; ?></button>
