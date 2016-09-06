@@ -36,8 +36,7 @@ class ModB3NewsletterHelper
 
         if ($recipient === 'email@email.com' || $recipient === '')
         {
-            $config = JFactory::getConfig();
-            $recipient = $config->get('mailfrom');
+            $recipient = JFactory::getConfig()->get('mailfrom');
         }
 
         return $recipient;
