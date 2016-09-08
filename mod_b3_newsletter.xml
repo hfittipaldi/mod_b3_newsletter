@@ -18,6 +18,10 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
+                <field name="myspacer"
+                       type="spacer"
+                       label="&lt;b&gt;Form Fields&lt;/b&gt;" />
+
                 <field name="name_label"
                        type="text"
                        default="Name:"
@@ -28,27 +32,32 @@
                        default="Email:"
                        label="Email Label"
                        description="The label next to the email input." />
+                <field name="button_text"
+                       type="text"
+                       default="Subscribe to Newsletter"
+                       label="Button Text"
+                       description="The text on the submit button" />
+                <field name="pre_text"
+                       type="text"
+                       default=""
+                       label="Small Intro Text"
+                       description="A small text shown before (above) the subscription form" />
+                <field name="unique_id"
+                       type="text"
+                       default=""
+                       label="Unique Identifier"
+                       description="If you want to use NS multiple times in a page, use this unique identifier so that they don't get post together." />
+
+                <field name="myspacer1"
+                       type="spacer"
+                       label="&lt;hr/&gt;&lt;b&gt;Mail Options&lt;/b&gt;" />
+
                 <field name="email_recipient"
                        type="email"
                        default="email@email.com"
                        validate="email"
                        label="Email Recipient"
                        description="The recipient of the subscription notification mail." />
-                <field name="button_text"
-                       type="text"
-                       default="Subscribe to Newsletter"
-                       label="Button Text"
-                       description="The text on the submit button" />
-                <field name="page_text"
-                       type="text"
-                       default="Thank you for subscribing to our site."
-                       label="Thank you page text"
-                       description="The text displayed to the user when he subscribes" />
-                <field name="error_text"
-                       type="text"
-                       default="Your subscription could not be submitted. Please try again."
-                       label="Error page text"
-                       description="The text displayed to the user when the subscription fails to be mailed" />
                 <field name="subject"
                        type="text"
                        default="New subscription to your site!"
@@ -74,6 +83,35 @@
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </field>
+                <field name="custom_redirect"
+                       type="text"
+                       default=""
+                       label="Custom Redirect"
+                       description="Enter an alternative URL where the user will be redirected to after mail is sent."/>
+                <field name="enable_anti_spam"
+                       type="radio"
+                       class="btn-group btn-group-yesno radio"
+                       default="0"
+                       label="Enable Anti-Spam"
+                       description="Enable to use Google Re-Captcha (it's necessary enabling Google Re-Captcha plugin)">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+
+                <field name="myspacer2"
+                       type="spacer"
+                       label="&lt;hr/&gt;&lt;b&gt;Messages&lt;/b&gt;" />
+
+                <field name="page_text"
+                       type="text"
+                       default="Thank you for subscribing to our site."
+                       label="Thank you page text"
+                       description="The text displayed to the user when he subscribes" />
+                <field name="error_text"
+                       type="text"
+                       default="Your subscription could not be submitted. Please try again."
+                       label="Error page text"
+                       description="The text displayed to the user when the subscription fails to be mailed" />
                 <field name="no_name"
                        type="text"
                        default="Please write your name"
@@ -84,6 +122,11 @@
                        default="Please write a valid email"
                        label="Invalid Email Error Message"
                        description="The error message when the user writes an invalid email" />
+
+                <field name="myspacer3"
+                       type="spacer"
+                       label="&lt;hr/&gt;&lt;b&gt;List&lt;/b&gt;" />
+
                 <field name="save_list"
                        type="radio"
                        class="btn-group btn-group-yesno radio"
@@ -96,31 +139,8 @@
                 <field name="@list"
                        type="text"
                        class="hidden"
-                       label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;" />
-                <field name="pre_text"
-                       type="text"
-                       default=""
-                       label="Small Intro Text"
-                       description="A small text shown before (above) the subscription form" />
-                <field name="custom_redirect"
-                       type="text"
-                       default=""
-                       label="Custom Redirect"
-                       description="Enter an alternative URL where the user will be redirected to after mail is sent."/>
-                <field name="unique_id"
-                       type="text"
-                       default=""
-                       label="Unique Identifier"
-                       description="If you want to use NS multiple times in a page, use this unique identifier so that they don't get post together."/>
-                <field name="enable_anti_spam"
-                       type="radio"
-                       class="btn-group btn-group-yesno radio"
-                       default="0"
-                       label="Enable Anti-Spam"
-                       description="Enable to use Google Re-Captcha (it's necessary enabling Google Re-Captcha plugin)">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </field>
+                       label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;"
+                       description="Must be imported with code &lt;b&gt;65001 : Unicode (UTF-8)&lt;/b&gt; in order to be full recognized" />
             </fieldset>
 
             <fieldset name="advanced">
