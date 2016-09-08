@@ -144,20 +144,10 @@
                        class="btn-group btn-group-yesno radio"
                        default="0"
                        label="Enable Anti-Spam"
-                       description="Enable a simple question-answer anti-spam system">
+                       description="Enable to use Google Re-Captcha (it's necessary enabling Google Re-Captcha plugin)">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </field>
-                <field name="anti_spam_q"
-                       type="text"
-                       default="How many eyes has a typical person? (ex: 1)"
-                       label="Anti-Spam Question"
-                       description="A simple question to prevent spam"/>
-                <field name="anti_spam_a"
-                       type="text"
-                       default="2"
-                       label="Anti-Spam Answer"
-                       description="A simple answer to the question. Easy for people, hard for machines"/>
             </fieldset>
 
             <fieldset name="advanced">

@@ -14,6 +14,26 @@
 // no direct access
 defined('_JEXEC') or die;
 
+JHtml::_('behavior.keepalive');
+JHtml::_('behavior.formvalidator');
+
+$captchaEnabled = false;
+
+foreach (JPluginHelper::getPlugin('captcha') as $plugin)
+{
+    $plg_params = json_decode($plugin->params);
+    $key        = $plg_params->public_key;
+    $secret     = $plg_params->private_key;
+
+    if ($plugin->name === 'recaptcha')
+    {
+        $captchaEnabled = true;
+        JFactory::getDocument()->addScript("https://www.google.com/recaptcha/api.js");
+
+        break;
+    }
+}
+
 // Include the syndicate functions only once
 require_once __DIR__ . '/helper.php';
 
@@ -73,10 +93,6 @@ $url = htmlentities($url, ENT_COMPAT, "UTF-8");
 $unique_id = $params->get('unique_id', "");
 
 $enable_anti_spam = $params->get('enable_anti_spam', true);
-$myAntiSpamQuestion = $params->get('anti_spam_q', 'How many eyes has a typical person? (ex: 1)');
-$myAntiSpamAnswer = $params->get('anti_spam_a', '2');
-
-$errors = 3;
 
 $subscriberName  = $jinput->getString('m_name'.$unique_id, null);
 $subscriberEmail = strtolower($jinput->getString('m_email'.$unique_id, null));
@@ -89,22 +105,29 @@ if ($subscriberName !== null)
     $errors = 0;
     if ($enable_anti_spam)
     {
-        if ($jinput->getString("modns_anti_spam_answer".$unique_id) != $myAntiSpamAnswer)
+        $captcha_data = $jinput->getString('g-recaptcha-response', null);
+        if ($captcha_data !== null)
         {
-            $app->enqueueMessage(JText::_('Wrong anti-spam answer'), 'warning');
+            $resposta = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha_data . "&remoteip=" . $_SERVER['REMOTE_ADDR']));
+
+            if ($resposta->success === false)
+            {
+                $app->enqueueMessage(JText::_('Wrong anti-spam answer'), 'warning');
+                $errors++;
+            }
         }
     }
 
     if ($subscriberName === "")
     {
         $app->enqueueMessage(JText::_($noName), 'warning');
-        $errors = $errors + 1;
+        $errors++;
     }
 
     if (modB3NewsletterHelper::validateEmail($subscriberEmail) === false)
     {
         $app->enqueueMessage(JText::_($invalidEmail), 'warning');
-        $errors = $errors + 2;
+        $errors++;
     }
 
     if ($errors === 0)
@@ -144,14 +167,13 @@ if ($subscriberName !== null)
 
         $session->clear('subscriberName');
         $session->clear('subscriberEmail');
-        $session->clear('errors');
-    }
-    else
-    {
-        $session->set('errors', $errors);
     }
 
     $app->redirect($url);
 }
 
 require JModuleHelper::getLayoutPath('mod_b3_newsletter', $params->get('layout', 'default'));
+
+// Clear existing sessions
+$session->clear('subscriberName');
+$session->clear('subscriberEmail');
