@@ -17,6 +17,9 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
+// Include the syndicate functions only once
+require_once __DIR__ . '/helper.php';
+
 $captchaEnabled = false;
 
 foreach (JPluginHelper::getPlugin('captcha') as $plugin)
@@ -33,9 +36,6 @@ foreach (JPluginHelper::getPlugin('captcha') as $plugin)
         break;
     }
 }
-
-// Include the syndicate functions only once
-require_once __DIR__ . '/helper.php';
 
 $app     = JFactory::getApplication();
 $session = JFactory::getSession();
@@ -56,36 +56,21 @@ $fromEmail           = $params->get('from_email', 'newsletter_subscriber@yoursit
 $sendingWithSetEmail = $params->get('sending_from_set', true);
 
 $noName       = $params->get('no_name', 'Please write your name');
-$noEmail      = $params->get('no_email', 'Please write your email');
 $invalidEmail = $params->get('invalid_email', 'Please write a valid email');
 
 $saveList = $params->get('save_list', true);
 
 $pre_text = $params->get('pre_text', '');
 
-$disable_https = $params->get('disable_https', true);
-
-$exact_url = $params->get('exact_url', true);
-if (!$exact_url)
+$fixed_url = $params->get('fixed_url', true);
+$fixed_url_address = $params->get('fixed_url_address', null);
+if ($fixed_url && $fixed_url_address !== null)
 {
-    $url = JURI::current();
+    $url = JRoute::_($fixed_url_address);
 }
 else
 {
-    if (!$disable_https)
-    {
-        $url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-    }
-    else
-    {
-        $url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-    }
-}
-
-$fixed_url = $params->get('fixed_url', true);
-if ($fixed_url)
-{
-    $url = $params->get('fixed_url_address', "");
+    $url = JRoute::_('index.php');
 }
 
 $url = htmlentities($url, ENT_COMPAT, "UTF-8");

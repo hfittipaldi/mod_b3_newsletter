@@ -97,24 +97,6 @@
                        type="text"
                        class="hidden"
                        label="&lt;a href='../images/mailing_list.csv' class='btn btn-primary' target='_blank'&gt;List download&lt;/a&gt;" />
-                <field name="exact_url"
-                       type="radio"
-                       class="btn-group btn-group-yesno radio"
-                       default="1"
-                       label="Exact URL"
-                       description="This is an advanced option about the url retrieval way. If your site is http and your server/host supports https this should be No.">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </field>
-                <field name="disable_https"
-                       type="radio"
-                       class="btn-group btn-group-yesno radio"
-                       default="1"
-                       label="Disable HTTPS"
-                       description="This is an advanced option about the url retrieval way. Please enable it if NS posts in https and your site is http.">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </field>
                 <field name="pre_text"
                        type="text"
                        default=""
@@ -133,7 +115,7 @@
                        type="text"
                        default=""
                        label="Fixed URL Address"
-                       description="If fixed url is true, this address is used for NS to post itself."/>
+                       description="Enter an alternative URL where the user will be redirected to after mail is sent."/>
                 <field name="unique_id"
                        type="text"
                        default=""
