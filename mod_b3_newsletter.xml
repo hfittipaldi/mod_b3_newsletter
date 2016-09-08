@@ -102,19 +102,10 @@
                        default=""
                        label="Small Intro Text"
                        description="A small text shown before (above) the subscription form" />
-                <field name="fixed_url"
-                       type="radio"
-                       class="btn-group btn-group-yesno radio"
-                       default="0"
-                       label="Fixed URL"
-                       description="A simple solution to people that want to use NS in an exact page. Change this to Yes and write the URL of NS in the Fixed URL Address parameter">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </field>
-                <field name="fixed_url_address"
+                <field name="custom_redirect"
                        type="text"
                        default=""
-                       label="Fixed URL Address"
+                       label="Custom Redirect"
                        description="Enter an alternative URL where the user will be redirected to after mail is sent."/>
                 <field name="unique_id"
                        type="text"

@@ -62,11 +62,10 @@ $saveList = $params->get('save_list', true);
 
 $pre_text = $params->get('pre_text', '');
 
-$fixed_url = $params->get('fixed_url', true);
-$fixed_url_address = $params->get('fixed_url_address', null);
-if ($fixed_url && $fixed_url_address !== null)
+$custom_redirect = $params->get('custom_redirect', null);
+if ($custom_redirect !== null)
 {
-    $url = JRoute::_($fixed_url_address);
+    $url = $custom_redirect;
 }
 else
 {
