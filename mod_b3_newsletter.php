@@ -20,8 +20,38 @@ JHtml::_('behavior.formvalidator');
 // Include the syndicate functions only once
 require_once __DIR__ . '/helper.php';
 
-$captchaEnabled = false;
+$app     = JFactory::getApplication();
+$session = JFactory::getSession();
+$jinput  = $app->input;
 
+// Form fields
+$myNameLabel  = $params->get('name_label', JText::_('MOD_B3_NEWSLETTER_NAME_DEFAULT'));
+$myEmailLabel = $params->get('email_label', JText::_('MOD_B3_NEWSLETTER_EMAIL_DEFAULT'));
+$buttonText = $params->get('button_text', JText::_('MOD_B3_NEWSLETTER_BUTTON_TEXT_DEFAULT'));
+$pre_text = $params->get('pre_text', '');
+$unique_id = $params->get('unique_id', '');
+
+// Mail options
+$recipient    = modB3NewsletterHelper::getRecipient($params);
+$subject             = $params->get('subject', JText::_('MOD_B3_NEWSLETTER_SUBJECT_DEFAULT'));
+$fromName            = $params->get('from_name', JText::_('MOD_B3_NEWSLETTER_FROM_NAME_DEFAULT'));
+$fromEmail           = $params->get('from_email', JText::_('MOD_B3_NEWSLETTER_FROM_EMAIL_DEFAULT'));
+$sendingWithSetEmail = $params->get('sending_from_set', true);
+
+$custom_redirect = $params->get('custom_redirect', null);
+if ($custom_redirect !== null)
+{
+    $url = $custom_redirect;
+}
+else
+{
+    $url = JRoute::_('index.php');
+}
+$url = htmlentities($url, ENT_COMPAT, "UTF-8");
+
+$enable_anti_spam = $params->get('enable_anti_spam', true);
+
+$captchaEnabled = false;
 foreach (JPluginHelper::getPlugin('captcha') as $plugin)
 {
     $plg_params = json_decode($plugin->params);
@@ -37,47 +67,16 @@ foreach (JPluginHelper::getPlugin('captcha') as $plugin)
     }
 }
 
-$app     = JFactory::getApplication();
-$session = JFactory::getSession();
-$jinput  = $app->input;
+// Messages
+$pageText     = $params->get('page_text', JText::_('MOD_B3_NEWSLETTER_PAGE_TEXT_DEFAULT'));
+$errorText    = $params->get('errot_text', JText::_('MOD_B3_NEWSLETTER_ERROR_TEXT_DEFAULT'));
+$noName       = $params->get('no_name', JText::_('MOD_B3_NEWSLETTER_NO_NAME_DEFAULT'));
+$invalidEmail = $params->get('invalid_email', JText::_('MOD_B3_NEWSLETTER_INVALID_EMAIL_DEFAULT'));
 
-$recipient    = modB3NewsletterHelper::getRecipient($params);
-
-$myNameLabel  = $params->get('name_label', 'Name:');
-$myEmailLabel = $params->get('email_label', 'Email:');
-
-$buttonText = $params->get('button_text', 'Subscribe to Newsletter');
-$pageText   = $params->get('page_text', 'Thank you for subscribing to our site.');
-$errorText  = $params->get('errot_text', 'Your subscription could not be submitted. Please try again.');
-
-$subject             = $params->get('subject', 'New subscription to your site!');
-$fromName            = $params->get('from_name', 'Newsletter Subscriber');
-$fromEmail           = $params->get('from_email', 'newsletter_subscriber@yoursite.com');
-$sendingWithSetEmail = $params->get('sending_from_set', true);
-
-$noName       = $params->get('no_name', 'Please write your name');
-$invalidEmail = $params->get('invalid_email', 'Please write a valid email');
-
+// List
 $saveList = $params->get('save_list', true);
 
-$pre_text = $params->get('pre_text', '');
-
-$custom_redirect = $params->get('custom_redirect', null);
-if ($custom_redirect !== null)
-{
-    $url = $custom_redirect;
-}
-else
-{
-    $url = JRoute::_('index.php');
-}
-
-$url = htmlentities($url, ENT_COMPAT, "UTF-8");
-
-$unique_id = $params->get('unique_id', "");
-
-$enable_anti_spam = $params->get('enable_anti_spam', true);
-
+// Retrived data
 $subscriberName  = $jinput->getString('m_name'.$unique_id, null);
 $subscriberEmail = strtolower($jinput->getString('m_email'.$unique_id, null));
 
