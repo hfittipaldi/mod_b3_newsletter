@@ -15,9 +15,9 @@
         <filename>index.html</filename>
         <folder>tmpl</folder>
     </files>
-	<languages>
-		<language tag="en-GB">en-GB.mod_b3_newsletter.ini</language>
-	</languages>
+    <languages>
+        <language tag="en-GB">en-GB.mod_b3_newsletter.ini</language>
+    </languages>
     <config>
         <fields name="params">
             <fieldset name="basic">
@@ -27,16 +27,19 @@
 
                 <field name="name_label"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_NAME_DEFAULT"
                        label="MOD_B3_NEWSLETTER_NAME_LABEL"
                        description="MOD_B3_NEWSLETTER_NAME_DESC" />
                 <field name="email_label"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_EMAIL_DEFAULT"
                        label="MOD_B3_NEWSLETTER_EMAIL_LABEL"
                        description="MOD_B3_NEWSLETTER_EMAIL_DESC" />
                 <field name="button_text"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_BUTTON_TEXT_DEFAULT"
                        label="MOD_B3_NEWSLETTER_BUTTON_TEXT_LABEL"
                        description="MOD_B3_NEWSLETTER_BUTTON_TEXT_DESC" />
@@ -57,23 +60,27 @@
 
                 <field name="email_recipient"
                        type="email"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_EMAIL_RECIPIENT_DEFAULT"
                        validate="email"
                        label="MOD_B3_NEWSLETTER_EMAIL_RECIPIENT_LABEL"
                        description="MOD_B3_NEWSLETTER_EMAIL_RECIPIENT_DESC" />
                 <field name="subject"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_SUBJECT_DEFAULT"
                        label="MOD_B3_NEWSLETTER_SUBJECT_LABEL"
                        description="MOD_B3_NEWSLETTER_SUBJECT_DESC" />
                 <field name="from_name"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_FROM_NAME_DEFAULT"
                        label="MOD_B3_NEWSLETTER_FROM_NAME_LABEL"
                        description="MOD_B3_NEWSLETTER_FROM_NAME_DESC" />
                 <field name="from_email"
                        type="email"
                        validate="email"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_FROM_EMAIL_DEFAULT"
                        label="MOD_B3_NEWSLETTER_FROM_EMAIL_LABEL"
                        description="MOD_B3_NEWSLETTER_FROM_EMAIL_DESC" />
@@ -88,7 +95,7 @@
                 </field>
                 <field name="custom_redirect"
                        type="text"
-                       default="MOD_B3_NEWSLETTER_CUSTOM_REDIRECT_DEFAULT"
+                       default=""
                        label="MOD_B3_NEWSLETTER_CUSTOM_REDIRECT_LABEL"
                        description="MOD_B3_NEWSLETTER_CUSTOM_REDIRECT_DESC"/>
                 <field name="enable_anti_spam"
@@ -107,21 +114,25 @@
 
                 <field name="page_text"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_PAGE_TEXT_DEFAULT"
                        label="MOD_B3_NEWSLETTER_PAGE_TEXT_LABEL"
                        description="MOD_B3_NEWSLETTER_PAGE_TEXT_DESC" />
                 <field name="error_text"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_ERROR_TEXT_DEFAULT"
                        label="MOD_B3_NEWSLETTER_ERROR_TEXT_LABEL"
                        description="MOD_B3_NEWSLETTER_ERROR_TEXT_DESC" />
                 <field name="no_name"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_NO_NAME_DEFAULT"
                        label="MOD_B3_NEWSLETTER_NO_NAME_LABEL"
                        description="MOD_B3_NEWSLETTER_NO_NAME_DESC" />
                 <field name="invalid_email"
                        type="text"
+                       translate_default="true"
                        default="MOD_B3_NEWSLETTER_INVALID_EMAIL_DEFAULT"
                        label="MOD_B3_NEWSLETTER_INVALID_EMAIL_LABEL"
                        description="MOD_B3_NEWSLETTER_INVALID_EMAIL_DESC" />
