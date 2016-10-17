@@ -15,7 +15,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<form action="<?php echo JRoute::_('index.php'); ?>" method="post" role="form" class="b3Newsletter">
+<form action="<?php echo JRoute::_('index.php'); ?>" method="post" class="b3Newsletter">
     <fieldset><?php if ($pre_text != '') { ?><legend class="modnsintro"><?php echo $pre_text; ?></legend><?php } ?>
         <div class="form-group">
             <label class="sr-only"><?php echo $myNameLabel; ?></label>
