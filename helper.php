@@ -42,7 +42,7 @@ class ModB3NewsletterHelper
         return $recipient;
     }
 
-    /*
+    /**
      * Validates a given email
      *
      * @since   1.0
@@ -54,5 +54,30 @@ class ModB3NewsletterHelper
     public static function validateEmail($value)
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
+
+    /**
+     * Load Recaptcha API if not already loaded
+     */
+    public static function loadRecaptcha()
+    {
+        $doc = JFactory::getDocument();
+        $scripts = array_keys($doc->_scripts);
+        $n_scripts = count($scripts);
+
+        $scriptFound = false;
+        for ($i = 0; $i < $n_scripts; $i++)
+        {
+            if (stripos($scripts[$i], 'api.js') !== false)
+            {
+                $scriptFound = true;
+                break;
+            }
+        }
+
+        if (!$scriptFound)
+        {
+            $doc->addScript("https://www.google.com/recaptcha/api.js");
+        }
     }
 }

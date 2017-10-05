@@ -61,7 +61,7 @@ foreach (JPluginHelper::getPlugin('captcha') as $plugin)
     if ($plugin->name === 'recaptcha')
     {
         $captchaEnabled = true;
-        JFactory::getDocument()->addScript("https://www.google.com/recaptcha/api.js");
+        ModB3NewsletterHelper::loadRecaptcha();
 
         break;
     }
