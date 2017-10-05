@@ -141,6 +141,12 @@ if ($subscriberName !== null)
             {
                 $savePath = JPATH_BASE . '/images/mailing_list.csv';
                 $file = fopen($savePath, "a");
+
+                if (!file_exists($savePath))
+                {
+                    fwrite($file, 'Nome;Email');
+                }
+
                 fwrite($file, PHP_EOL . $subscriberName . ";" . $subscriberEmail);
                 fclose($file);
             }
