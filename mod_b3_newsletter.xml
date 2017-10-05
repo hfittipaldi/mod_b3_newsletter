@@ -22,6 +22,29 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
+                <field name="myspacer3"
+                       type="spacer"
+                       label="MOD_B3_NEWSLETTER_MYSPACER3" />
+
+                <field name="save_list"
+                       type="radio"
+                       class="btn-group btn-group-yesno radio"
+                       default="1"
+                       label="MOD_B3_NEWSLETTER_SAVE_LIST_LABEL"
+                       description="MOD_B3_NEWSLETTER_SAVE_LIST_DESC">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+
+                <field name="note"
+                       type="note"
+                       description="MOD_B3_NEWSLETTER_LIST_DESC" />
+
+                <field name="@list"
+                       type="text"
+                       class="hidden"
+                       label="MOD_B3_NEWSLETTER_LIST_LABEL" />
+
                 <field name="myspacer"
                        type="spacer"
                        label="MOD_B3_NEWSLETTER_MYSPACER" />
@@ -137,29 +160,6 @@
                        default="MOD_B3_NEWSLETTER_INVALID_EMAIL_DEFAULT"
                        label="MOD_B3_NEWSLETTER_INVALID_EMAIL_LABEL"
                        description="MOD_B3_NEWSLETTER_INVALID_EMAIL_DESC" />
-
-                <field name="myspacer3"
-                       type="spacer"
-                       label="MOD_B3_NEWSLETTER_MYSPACER3" />
-
-                <field name="save_list"
-                       type="radio"
-                       class="btn-group btn-group-yesno radio"
-                       default="1"
-                       label="MOD_B3_NEWSLETTER_SAVE_LIST_LABEL"
-                       description="MOD_B3_NEWSLETTER_SAVE_LIST_DESC">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </field>
-
-                <field name="note"
-                       type="note"
-                       description="MOD_B3_NEWSLETTER_LIST_DESC" />
-
-                <field name="@list"
-                       type="text"
-                       class="hidden"
-                       label="MOD_B3_NEWSLETTER_LIST_LABEL" />
             </fieldset>
 
             <fieldset name="advanced">
