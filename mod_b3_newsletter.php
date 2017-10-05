@@ -69,7 +69,7 @@ foreach (JPluginHelper::getPlugin('captcha') as $plugin)
 
 // Messages
 $pageText     = $params->get('page_text', JText::_('MOD_B3_NEWSLETTER_PAGE_TEXT_DEFAULT'));
-$errorText    = $params->get('errot_text', JText::_('MOD_B3_NEWSLETTER_ERROR_TEXT_DEFAULT'));
+$errorText    = $params->get('error_text', JText::_('MOD_B3_NEWSLETTER_ERROR_TEXT_DEFAULT'));
 $noName       = $params->get('no_name', JText::_('MOD_B3_NEWSLETTER_NO_NAME_DEFAULT'));
 $invalidEmail = $params->get('invalid_email', JText::_('MOD_B3_NEWSLETTER_INVALID_EMAIL_DEFAULT'));
 
