@@ -140,11 +140,17 @@ if ($subscriberName !== null)
             if ($saveList)
             {
                 $savePath = JPATH_BASE . '/images/mailing_list.csv';
-                $file = fopen($savePath, "a");
 
                 if (!file_exists($savePath))
                 {
+                    $file = fopen($savePath, "w");
+                    //add BOM to fix UTF-8 in Excel
+                    fputs($file, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
                     fwrite($file, 'Nome;Email');
+                }
+                else
+                {
+                    $file = fopen($savePath, "a");
                 }
 
                 fwrite($file, PHP_EOL . $subscriberName . ";" . $subscriberEmail);
