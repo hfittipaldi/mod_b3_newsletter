@@ -17,8 +17,8 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
-// Include the syndicate functions only once
-require_once __DIR__ . '/helper.php';
+// Register helper
+JLoader::register('ModB3NewsletterHelper', __DIR__ . '/helper.php');
 
 $app     = JFactory::getApplication();
 $session = JFactory::getSession();
@@ -27,12 +27,12 @@ $jinput  = $app->input;
 // Form fields
 $myNameLabel  = $params->get('name_label', JText::_('MOD_B3_NEWSLETTER_NAME_DEFAULT'));
 $myEmailLabel = $params->get('email_label', JText::_('MOD_B3_NEWSLETTER_EMAIL_DEFAULT'));
-$buttonText = $params->get('button_text', JText::_('MOD_B3_NEWSLETTER_BUTTON_TEXT_DEFAULT'));
-$pre_text = $params->get('pre_text', '');
-$unique_id = $params->get('unique_id', '');
+$buttonText   = $params->get('button_text', JText::_('MOD_B3_NEWSLETTER_BUTTON_TEXT_DEFAULT'));
+$pre_text     = $params->get('pre_text', '');
+$unique_id    = $params->get('unique_id', '');
 
 // Mail options
-$recipient    = modB3NewsletterHelper::getRecipient($params);
+$recipient           = modB3NewsletterHelper::getRecipient($params);
 $subject             = $params->get('subject', JText::_('MOD_B3_NEWSLETTER_SUBJECT_DEFAULT'));
 $fromName            = $params->get('from_name', JText::_('MOD_B3_NEWSLETTER_FROM_NAME_DEFAULT'));
 $fromEmail           = $params->get('from_email', JText::_('MOD_B3_NEWSLETTER_FROM_EMAIL_DEFAULT'));
